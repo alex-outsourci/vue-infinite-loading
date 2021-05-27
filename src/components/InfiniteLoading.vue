@@ -61,7 +61,7 @@ export default /* #__PURE__ */defineComponent({
           // has slot and slot is pure text node
           || (
             this.$slots[name]
-            && !this.$slots[name][0].tag
+            && !this.$slots[name]()?.[0]?.tag
           )
         ) {
           // only apply default styles for pure text slot
