@@ -540,7 +540,7 @@ function isVisible(elm) {
         _this2.$nextTick(_this2.attemptLoad.bind(null, true));
       }
 
-      if (!ev || ev.target !== _this2) {
+      if (!_this2.verifyEventTarget(ev)) {
         warn(WARNINGS.STATE_CHANGER);
       }
     });
@@ -553,7 +553,7 @@ function isVisible(elm) {
 
       _this2.scrollParent.removeEventListener('scroll', _this2.scrollHandler, evt3rdArg);
 
-      if (!ev || ev.target !== _this2) {
+      if (!_this2.verifyEventTarget(ev)) {
         warn(WARNINGS.STATE_CHANGER);
       }
     });
@@ -571,7 +571,7 @@ function isVisible(elm) {
         _this2.scrollHandler();
       }, 1);
 
-      if (!ev || ev.target !== _this2) {
+      if (!_this2.verifyEventTarget(ev)) {
         warn(WARNINGS.IDENTIFIER);
       }
     });
@@ -633,6 +633,19 @@ function isVisible(elm) {
     this.scrollParent.addEventListener('scroll', this.scrollHandler, evt3rdArg);
   },
   methods: {
+    /**
+     * check if event target === this, to identify who emited event
+     * @param {Event} ev
+     * */
+    verifyEventTarget: function verifyEventTarget(ev) {
+      if (!ev || !ev.target) {
+        return false;
+      } // eslint-disable-next-line no-underscore-dangle
+
+
+      return ev.target._uid === this._uid;
+    },
+
     /**
      * attempt trigger load
      * @param {Boolean} isContinuousCall  the flag of continuous call, it will be true
@@ -720,9 +733,9 @@ function isVisible(elm) {
       this.scrollParent.removeEventListener('scroll', this.scrollHandler, evt3rdArg);
     }
   }
-});var _withId = /*#__PURE__*/vue.withScopeId("data-v-14855244");
+});var _withId = /*#__PURE__*/vue.withScopeId("data-v-5a7f83e0");
 
-vue.pushScopeId("data-v-14855244");
+vue.pushScopeId("data-v-5a7f83e0");
 
 var _hoisted_1 = {
   class: "infinite-loading-container"
@@ -781,9 +794,9 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
       textContent: vue.toDisplayString(_ctx.slots.errorBtnText)
     }, null, 8, ["textContent"])], 64))];
   })], 4), [[vue.vShow, _ctx.isShowError]])]);
-});var css_248z = ".infinite-loading-container[data-v-14855244] {\n  clear: both;\n  text-align: center;\n}\n.infinite-loading-container[data-v-14855244] *[class^=loading-] {\n  display: inline-block;\n  margin: 5px 0;\n  width: 28px;\n  height: 28px;\n  font-size: 28px;\n  line-height: 28px;\n  border-radius: 50%;\n}\n.btn-try-infinite[data-v-14855244] {\n  margin-top: 5px;\n  padding: 5px 10px;\n  color: #999;\n  font-size: 14px;\n  line-height: 1;\n  background: transparent;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  outline: none;\n  cursor: pointer;\n}\n.btn-try-infinite[data-v-14855244]:not(:active):hover {\n  opacity: 0.8;\n}\n";
+});var css_248z = ".infinite-loading-container[data-v-5a7f83e0] {\n  clear: both;\n  text-align: center;\n}\n.infinite-loading-container[data-v-5a7f83e0] *[class^=loading-] {\n  display: inline-block;\n  margin: 5px 0;\n  width: 28px;\n  height: 28px;\n  font-size: 28px;\n  line-height: 28px;\n  border-radius: 50%;\n}\n.btn-try-infinite[data-v-5a7f83e0] {\n  margin-top: 5px;\n  padding: 5px 10px;\n  color: #999;\n  font-size: 14px;\n  line-height: 1;\n  background: transparent;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  outline: none;\n  cursor: pointer;\n}\n.btn-try-infinite[data-v-5a7f83e0]:not(:active):hover {\n  opacity: 0.8;\n}\n";
 styleInject(css_248z);script.render = render;
-script.__scopeId = "data-v-14855244";// Import vue component
+script.__scopeId = "data-v-5a7f83e0";// Import vue component
 // IIFE injects install function into component, allowing component
 // to be registered via Vue.use() as well as Vue.component(),
 

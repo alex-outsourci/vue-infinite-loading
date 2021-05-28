@@ -130,7 +130,7 @@ export default /* #__PURE__ */defineComponent({
         this.$nextTick(this.attemptLoad.bind(null, true));
       }
 
-      if (!ev || ev.target !== this) {
+      if (!this.verifyEventTarget(ev)) {
         warn(WARNINGS.STATE_CHANGER);
       }
     });
@@ -145,7 +145,7 @@ export default /* #__PURE__ */defineComponent({
 
       this.scrollParent.removeEventListener('scroll', this.scrollHandler, evt3rdArg);
 
-      if (!ev || ev.target !== this) {
+      if (!this.verifyEventTarget(ev)) {
         warn(WARNINGS.STATE_CHANGER);
       }
     });
@@ -162,7 +162,7 @@ export default /* #__PURE__ */defineComponent({
         this.scrollHandler();
       }, 1);
 
-      if (!ev || ev.target !== this) {
+      if (!this.verifyEventTarget(ev)) {
         warn(WARNINGS.IDENTIFIER);
       }
     });
@@ -207,6 +207,18 @@ export default /* #__PURE__ */defineComponent({
     this.scrollParent.addEventListener('scroll', this.scrollHandler, evt3rdArg);
   },
   methods: {
+  /**
+   * check if event target === this, to identify who emited event
+   * @param {Event} ev
+   * */
+    verifyEventTarget(ev) {
+      if (!ev || !ev.target) {
+        return false;
+      }
+
+      // eslint-disable-next-line no-underscore-dangle
+      return ev.target._uid === this._uid;
+    },
     /**
      * attempt trigger load
      * @param {Boolean} isContinuousCall  the flag of continuous call, it will be true

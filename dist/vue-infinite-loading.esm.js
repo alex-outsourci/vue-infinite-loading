@@ -532,7 +532,7 @@ var script = /* #__PURE__ */defineComponent({
         this.$nextTick(this.attemptLoad.bind(null, true));
       }
 
-      if (!ev || ev.target !== this) {
+      if (!this.verifyEventTarget(ev)) {
         warn(WARNINGS.STATE_CHANGER);
       }
     });
@@ -544,7 +544,7 @@ var script = /* #__PURE__ */defineComponent({
       });
       this.scrollParent.removeEventListener('scroll', this.scrollHandler, evt3rdArg);
 
-      if (!ev || ev.target !== this) {
+      if (!this.verifyEventTarget(ev)) {
         warn(WARNINGS.STATE_CHANGER);
       }
     });
@@ -559,7 +559,7 @@ var script = /* #__PURE__ */defineComponent({
         this.scrollHandler();
       }, 1);
 
-      if (!ev || ev.target !== this) {
+      if (!this.verifyEventTarget(ev)) {
         warn(WARNINGS.IDENTIFIER);
       }
     });
@@ -620,6 +620,19 @@ var script = /* #__PURE__ */defineComponent({
   },
 
   methods: {
+    /**
+     * check if event target === this, to identify who emited event
+     * @param {Event} ev
+     * */
+    verifyEventTarget(ev) {
+      if (!ev || !ev.target) {
+        return false;
+      } // eslint-disable-next-line no-underscore-dangle
+
+
+      return ev.target._uid === this._uid;
+    },
+
     /**
      * attempt trigger load
      * @param {Boolean} isContinuousCall  the flag of continuous call, it will be true
@@ -709,9 +722,9 @@ var script = /* #__PURE__ */defineComponent({
 
 });
 
-const _withId = /*#__PURE__*/withScopeId("data-v-14855244");
+const _withId = /*#__PURE__*/withScopeId("data-v-5a7f83e0");
 
-pushScopeId("data-v-14855244");
+pushScopeId("data-v-5a7f83e0");
 
 const _hoisted_1 = {
   class: "infinite-loading-container"
@@ -762,11 +775,11 @@ const render = /*#__PURE__*/_withId((_ctx, _cache, $props, $setup, $data, $optio
   }, null, 8, ["textContent"])], 64))])], 4), [[vShow, _ctx.isShowError]])]);
 });
 
-var css_248z = ".infinite-loading-container[data-v-14855244] {\n  clear: both;\n  text-align: center;\n}\n.infinite-loading-container[data-v-14855244] *[class^=loading-] {\n  display: inline-block;\n  margin: 5px 0;\n  width: 28px;\n  height: 28px;\n  font-size: 28px;\n  line-height: 28px;\n  border-radius: 50%;\n}\n.btn-try-infinite[data-v-14855244] {\n  margin-top: 5px;\n  padding: 5px 10px;\n  color: #999;\n  font-size: 14px;\n  line-height: 1;\n  background: transparent;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  outline: none;\n  cursor: pointer;\n}\n.btn-try-infinite[data-v-14855244]:not(:active):hover {\n  opacity: 0.8;\n}\n";
+var css_248z = ".infinite-loading-container[data-v-5a7f83e0] {\n  clear: both;\n  text-align: center;\n}\n.infinite-loading-container[data-v-5a7f83e0] *[class^=loading-] {\n  display: inline-block;\n  margin: 5px 0;\n  width: 28px;\n  height: 28px;\n  font-size: 28px;\n  line-height: 28px;\n  border-radius: 50%;\n}\n.btn-try-infinite[data-v-5a7f83e0] {\n  margin-top: 5px;\n  padding: 5px 10px;\n  color: #999;\n  font-size: 14px;\n  line-height: 1;\n  background: transparent;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  outline: none;\n  cursor: pointer;\n}\n.btn-try-infinite[data-v-5a7f83e0]:not(:active):hover {\n  opacity: 0.8;\n}\n";
 styleInject(css_248z);
 
 script.render = render;
-script.__scopeId = "data-v-14855244";
+script.__scopeId = "data-v-5a7f83e0";
 
 // Import vue component
 // IIFE injects install function into component, allowing component
